@@ -1,7 +1,7 @@
 import java.time.*;
+import java.util.Locale;
 
 public class Candidato {
-    private String nomeCompleto;
     private String nomeUrna;
     private LocalDate dataNascimento;
     private int votosNominais; // inicializa em 0 e vai aumentando
@@ -11,15 +11,13 @@ public class Candidato {
     private int genero; // 2 masculino e 4 feminino
     private int federacao; // -1 se for partido isolado
 
-    public Candidato(String nomeCompleto,
-    String nomeUrna,
+    public Candidato(String nomeUrna,
     LocalDate dataNascimento,
     int eleito,
     Partido partido,
     int codigoCandidato,
     int genero,
             int federacao) {
-        this.nomeCompleto = nomeCompleto;
         this.nomeUrna = nomeUrna;
         this.dataNascimento = dataNascimento;
         this.votosNominais = 0;
@@ -36,10 +34,6 @@ public class Candidato {
 
         // atualiza votos do partido
         partido.aumentaVotosNominais(quantidadeVotosNominais);
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
     }
 
     public String getNomeUrna() {
@@ -66,7 +60,7 @@ public class Candidato {
     // retorna 1 se estiver eleito, 0 se nao
     public int estaEleito() {
         
-        if (eleito > 0) {
+        if (eleito == 2 || eleito == 3) {
             return 1;
         }
         else {
@@ -90,9 +84,16 @@ public class Candidato {
     public int participaFederacao() {
         if (federacao > 0) {
             return 1;
-        }
-        else {
+        } else {
             return 0;
+        }
+    }
+    
+    public void imprimeCandidato() {
+        if (federacao >= 0) {
+            System.out.printf(Locale.forLanguageTag("pt-BR"), "*%s (%s, %,d votos)\n", nomeUrna, partido.getNomePartido(), votosNominais);
+        } else {
+            System.out.printf(Locale.forLanguageTag("pt-BR"), "%s (%s, %,d votos)\n", nomeUrna, partido.getNomePartido(), votosNominais);
         }
     }
 }

@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.*;
 
 public class Partido {
     private HashMap<Integer, Candidato> candidatos = new HashMap<>();
@@ -86,6 +87,19 @@ public class Partido {
 
     public int getTotalCandidatos() {
         return candidatos.size();
+    }
+
+    public int getTotalCandidatosEleitos() {
+        int qtdEleitos = 0;
+        Collection<Candidato> colecaoCandidatos = candidatos.values();
+
+        for (Candidato candidato : colecaoCandidatos) {
+            if (candidato.estaEleito() == 1) {
+                qtdEleitos += 1;
+            }
+        }
+
+        return qtdEleitos;
     }
 
     public String getNomePartido() {
