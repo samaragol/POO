@@ -1,15 +1,15 @@
 import java.time.*;
 
 public class Candidato {
-    String nomeCompleto;
-    String nomeUrna;
-    LocalDate dataNascimento;
-    int votosNominais; // inicializa em 0 e vai aumentando
-    int eleito; // 2 ou 3 se eleito (candidaturas invalidas sao barradas antes daqui)
-    Partido partido;
-    int codigoCandidato;
-    int genero; // 2 masculino e 4 feminino
-    int federacao; // -1 se for partido isolado
+    private String nomeCompleto;
+    private String nomeUrna;
+    private LocalDate dataNascimento;
+    private int votosNominais; // inicializa em 0 e vai aumentando
+    private int eleito; // 2 ou 3 se eleito (candidaturas invalidas sao barradas antes daqui)
+    private Partido partido;
+    private int codigoCandidato;
+    private int genero; // 2 masculino e 4 feminino
+    private int federacao; // -1 se for partido isolado
 
     public Candidato(String nomeCompleto,
     String nomeUrna,
@@ -35,6 +35,7 @@ public class Candidato {
         votosNominais += quantidadeVotosNominais;
 
         // atualiza votos do partido
+        partido.aumentaVotosNominais(quantidadeVotosNominais);
     }
 
     public String getNomeCompleto() {
@@ -47,11 +48,15 @@ public class Candidato {
 
     public int getIdade(LocalDate dataEleicao) {
         int idade;
-        
+
         Period periodo = Period.between(dataNascimento, dataEleicao);
         idade = periodo.getYears();
 
         return idade;
+    }
+    
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
     public int getVotosNominais() {
