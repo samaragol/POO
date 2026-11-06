@@ -18,6 +18,9 @@ public class App {
             Eleicao eleicao = new Eleicao(codigoMunicipio, dataEleicao);
             Leitura leitura = new Leitura();
             leitura.leDadosEntrada(eleicao, arquivoCandidatos, arquivoVotos);
+            Relatorios relatorios = new Relatorios(eleicao);
+
+            relatorios.imprimeTodosRelatorios();
 
         } catch (IOException | IllegalArgumentException e) {
             System.err.println("Erro ao processar os dados: " + e.getMessage());

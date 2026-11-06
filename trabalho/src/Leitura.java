@@ -29,6 +29,7 @@ public class Leitura {
                 int codigoPartido = Integer.parseInt(dados[colunas.get("NR_PARTIDO")]);
                 String nomePartido = dados[colunas.get("SG_PARTIDO")];
                 siglasPartidos.put(codigoPartido, nomePartido);
+                eleicao.retornaPartido(codigoPartido, nomePartido);
 
                 int codigoMunicipio = Integer.parseInt(dados[colunas.get("SG_UE")]);
                 if (codigoMunicipio != eleicao.getCodigoMunicipio()) {

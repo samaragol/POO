@@ -1,6 +1,4 @@
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.*;
 
 public class Eleicao {
@@ -65,13 +63,21 @@ public class Eleicao {
         return dataEleicao;
     }
 
-    public ArrayList<Candidato> ordenaCandidatos() {
+    public ArrayList<Candidato> ordenaCandidatosGeral() {
         ArrayList<Candidato> candidatosOrdenados = new ArrayList<>(candidatos.values());
         Compare comparador = new Compare();
 
         candidatosOrdenados.sort(comparador);
 
         return candidatosOrdenados;
+    }
+
+    public ArrayList<Candidato> getCandidatos() {
+        return new ArrayList<>(candidatos.values());
+    }
+
+     public ArrayList<Partido> getPartidos() {
+        return new ArrayList<>(partidos.values());
     }
 
     public int getTotalCandidatosEleitos() {
